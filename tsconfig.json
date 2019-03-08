@@ -9,5 +9,5 @@
     "declaration": true,
     "declarationDir": "./"
   },
-  "exclude": ["node_modules", "demo"]
+  "exclude": ["node_modules"]
 }

@@ -6,7 +6,7 @@ import axios from 'axios';
 import * as queryString from 'query-string';
 
 const asRequest = createRequestDecorator(({ url, query, body, method }) => {
-  query && (url += queryString.stringify(query));
+  query && (url += `?=${queryString.stringify(query)}`);
   return axios({
     url: url,
     method,

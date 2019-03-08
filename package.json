@@ -6,6 +6,10 @@
   "types": "dist/index.d.ts",
   "author": "Iron<lrironsora@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuia-fed/mobx-ajax-util"
+  },
   "dependencies": {
     "query-string": "^6.3.0"
   },
