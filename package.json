@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "start": "parcel demo/index.html"
+    "start": "parcel demo/index.html",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
