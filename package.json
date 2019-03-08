@@ -1,0 +1,39 @@
+{
+  "name": "mobx-ajax-util",
+  "version": "0.0.1",
+  "description": "A mobx util for handling ajax request.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Iron<lrironsora@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "query-string": "^6.3.0"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "start": "parcel demo/index.html"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/preset-env": "^7.3.4",
+    "@types/query-string": "^6.2.0",
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "^16.8.2",
+    "axios": "^0.18.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-mobx": "^2.0.0",
+    "babel-preset-react": "^6.24.1",
+    "mobx": "^5.9.0",
+    "mobx-react": "^5.4.3",
+    "parcel-bundler": "^1.11.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "rollup-plugin-typescript2": "^0.19.3",
+    "typescript": "^3.3.3333"
+  },
+  "peerDependencies": {
+    "mobx": ">=5"
+  }
+}
