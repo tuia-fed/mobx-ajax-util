@@ -50,7 +50,7 @@ const store = new SomeStore();
 store.userListStore.initial; // is in initial state
 store.userListStore.loading; // is loading state
 store.userListStore.error; // the Ajax error, null when request is success
-store.userListStore.data; // the response data. null when error
+store.userListStore.data; // the response data. null when success
 
 // and two method
 store.userListStore.fetch(params); //  invoke it for fetching the data. the first parameter is the request body or url query(it depends on the HTTP method)
