@@ -1,4 +1,4 @@
-import { observable, action, runInAction } from 'mobx';
+import { observable, action, runInAction, transaction } from 'mobx';
 
 export type HTTPMethod = 'POST' | 'GET' | 'PATCH' | 'PUT' | 'DELETE' | 'HEAD';
 export interface ProviderParameter<TExtra = any> {
@@ -52,7 +52,7 @@ export function createRequestDecorator<TExtra = any>(
               query: params,
               extraData
             });
-            runInAction(() => {
+            transaction(() => {
               this.data = data;
               this.initial = false;
               this.error = null;
@@ -60,7 +60,7 @@ export function createRequestDecorator<TExtra = any>(
             });
             return data;
           } catch (e) {
-            runInAction(() => {
+            transaction(() => {
               this.loading = false;
               this.error = e;
             });
