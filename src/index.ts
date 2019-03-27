@@ -1,4 +1,4 @@
-import { observable, action, runInAction, transaction } from 'mobx';
+import { observable, action, runInAction } from 'mobx';
 
 export type HTTPMethod = 'POST' | 'GET' | 'PATCH' | 'PUT' | 'DELETE' | 'HEAD';
 export interface ProviderParameter<TExtra = any> {
@@ -41,34 +41,30 @@ export function createRequestDecorator<TExtra = any>(
         @observable data = null;
         @observable error: Error | null;
 
-        @action async fetch(params: object) {
+        @action.bound fetch(params: object) {
           this.loading = true;
-
-          try {
-            const data = await provider({
-              url,
-              method,
-              body: params,
-              query: params,
-              extraData
+          return provider({
+            url,
+            method,
+            body: params,
+            query: params,
+            extraData
+          })
+            .catch(e => {
+              runInAction(() => {
+                this.loading = false;
+                this.error = e;
+              });
+              throw e;
+            })
+            .finally(() => {
+              runInAction(() => {
+                this.loading = false;
+              });
             });
-            transaction(() => {
-              this.data = data;
-              this.initial = false;
-              this.error = null;
-              this.loading = false;
-            });
-            return data;
-          } catch (e) {
-            transaction(() => {
-              this.loading = false;
-              this.error = e;
-            });
-            throw e;
-          }
         }
 
-        @action reset() {
+        @action.bound reset() {
           runInAction(() => {
             this.initial = true;
             this.loading = false;
