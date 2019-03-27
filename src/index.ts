@@ -50,9 +50,13 @@ export function createRequestDecorator<TExtra = any>(
             query: params,
             extraData
           })
+          .then(data => {
+            runInAction(() => {
+              this.data = data;
+            })
+          })
             .catch(e => {
               runInAction(() => {
-                this.loading = false;
                 this.error = e;
               });
               throw e;
