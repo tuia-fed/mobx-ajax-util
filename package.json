@@ -1,6 +1,6 @@
 {
   "name": "mobx-ajax-util",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "A mobx util for handling ajax request.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

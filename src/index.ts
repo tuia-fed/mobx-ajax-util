@@ -54,6 +54,7 @@ export function createRequestDecorator<TExtra = any>(
             runInAction(() => {
               this.data = data;
               this.initial = false;
+              this.error = null;
             })
             return data;
           })
