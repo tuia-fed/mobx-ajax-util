@@ -164,3 +164,45 @@ describe('Failed XHR request', () => {
     assert.isNull(store.requestField.error);
   });
 });
+
+describe('Test reset request store', () => {
+  it("Store's data should be null and stores initial should be ture after reset", async () => {
+    const asRequest = createRequestDecorator(
+      ({ url, method, body, extraData }) => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve({
+              url,
+              body,
+              method
+            });
+          }, 10);
+        });
+      }
+    );
+
+    class TestStore implements ITestStore {
+      @observable
+      enterLoadingSpy: sinon.SinonSpy<any[], any>;
+
+      @observable
+      leaveLoadingSpy: sinon.SinonSpy<any[], any>;
+
+      @asRequest({ url: 'path/to/your/heart', method: 'GET' })
+      requestField: AjaxStore;
+
+      constructor() {
+        this.enterLoadingSpy = sinon.fake();
+        this.leaveLoadingSpy = sinon.fake();
+      }
+    }
+    const store = new TestStore();
+
+    await store.requestField.fetch({ lorem: 'Lorem' });
+    assert.isNotNull(store.requestField.data);
+    assert.isFalse(store.requestField.initial);
+    store.requestField.reset();
+    assert.isNull(store.requestField.data);
+    assert.isTrue(store.requestField.initial);
+  });
+});
