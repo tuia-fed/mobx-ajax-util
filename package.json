@@ -11,16 +11,16 @@
     "url": "https://github.com/tuia-fed/mobx-ajax-util"
   },
   "dependencies": {
-    "query-string": "^6.3.0"
   },
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "start": "parcel demo/index.html",
     "prepublish": "npm run build",
     "test": "mocha",
-    "coverage": "nyc mocha --reporter=json > coverage/coverage.json"
+    "coverage": "nyc mocha && nyc report --reporter=json"
   },
   "devDependencies": {
+    "query-string": "^6.3.0",
     "@babel/core": "^7.3.4",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-decorators": "^7.4.0",

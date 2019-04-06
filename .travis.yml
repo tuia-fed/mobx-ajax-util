@@ -7,7 +7,7 @@ install:
 
 script:
   - yarn test
-  - codecov -f coverage/*.json
+  - codecov
 
 branches:
   only:
