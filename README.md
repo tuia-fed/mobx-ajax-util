@@ -113,4 +113,4 @@ ReactDOM.render(<App />, document.getElementById('app'));
 ## TODO:
 
 - [ ] API document
-- [ ] Unit test
+- [x] Unit test

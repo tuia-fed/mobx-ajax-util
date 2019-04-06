@@ -39,7 +39,7 @@ export function createRequestDecorator<TExtra = any>(
         @observable initial = true;
         @observable loading = false;
         @observable data = null;
-        @observable error: Error | null;
+        @observable error: Error | null = null;
 
         @action.bound fetch(params: object) {
           this.loading = true;
@@ -50,14 +50,14 @@ export function createRequestDecorator<TExtra = any>(
             query: params,
             extraData
           })
-          .then(data => {
-            runInAction(() => {
-              this.data = data;
-              this.initial = false;
-              this.error = null;
+            .then(data => {
+              runInAction(() => {
+                this.data = data;
+                this.initial = false;
+                this.error = null;
+              });
+              return data;
             })
-            return data;
-          })
             .catch(e => {
               runInAction(() => {
                 this.error = e;
