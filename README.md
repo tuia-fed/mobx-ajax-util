@@ -1,6 +1,9 @@
 # Mobx Ajax Util
-[![codecov](https://codecov.io/gh/tuia-fed/mobx-ajax-util/branch/master/graph/badge.svg)](https://codecov.io/gh/tuia-fed/mobx-ajax-util)
+![npm](https://img.shields.io/npm/v/mobx-ajax-util.svg)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/mobx-ajax-util.svg)
+![npm](https://img.shields.io/npm/dm/mobx-ajax-util.svg)
 [![Build Status](https://travis-ci.com/tuia-fed/mobx-ajax-util.svg?branch=master)](https://travis-ci.com/tuia-fed/mobx-ajax-util)
+[![codecov](https://codecov.io/gh/tuia-fed/mobx-ajax-util/branch/master/graph/badge.svg)](https://codecov.io/gh/tuia-fed/mobx-ajax-util)
 > Make it easy to handle Ajax request with loading status.
 
 While we establishing an Ajax request, often we also need an observable `loading` state for Ajax request loading status.
@@ -9,7 +12,7 @@ For example, when a form's submit button click, it should show an loading spinni
 
 This utility can help you easy to create an ajax request with loading state on mobx
 
-## install
+## Install
 
 ```shell
 yarn add mobx-ajax-util
@@ -17,7 +20,7 @@ yarn add mobx-ajax-util
 npm install --save mobx-ajax-util
 ```
 
-## usage
+## Usage
 
 ```jsx
 // first, import it.
@@ -58,7 +61,7 @@ store.userListStore.fetch(params); //  invoke it for fetching the data. the firs
 store.userListStore.reset(); // reset the userListStore
 ```
 
-## example
+## Example
 
 ```jsx
 import * as React from 'react';
@@ -134,7 +137,7 @@ export declare function createRequestDecorator<TExtra = any>(adapter: AjaxAdapte
 }) => <T extends object>(target: T, name: string) => any
 ```
 
-### AjaxStore
+### `AjaxStore`
 AjaxStore is just an interface. in some reason, the type of an decorator's return value must be `any`.
 
 This interface can implicit the type of decorated field when you use TypeScript or JSDoc.
