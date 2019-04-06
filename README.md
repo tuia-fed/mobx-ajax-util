@@ -1,13 +1,13 @@
 # Mobx Ajax Util
 [![codecov](https://codecov.io/gh/tuia-fed/mobx-ajax-util/branch/master/graph/badge.svg)](https://codecov.io/gh/tuia-fed/mobx-ajax-util)
 [![Build Status](https://travis-ci.com/tuia-fed/mobx-ajax-util.svg?branch=master)](https://travis-ci.com/tuia-fed/mobx-ajax-util)
-> easy to handle Ajax request with loading and initial status.
+> Make it easy to handle Ajax request with loading status.
 
-While we establish an Ajax request, sometimes we also need an observable `loading` state for loading logic.
+While we establishing an Ajax request, often we also need an observable `loading` state for Ajax request loading status.
 
-For example, when a form's submit button click, it should disabled before ajax finished.
+For example, when a form's submit button click, it should show an loading spinning, and disabled sequence click before ajax finished.
 
-This utility can help you easy to create an ajax request with processing state on mobx
+This utility can help you easy to create an ajax request with loading state on mobx
 
 ## install
 
@@ -111,7 +111,48 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.getElementById('app'));
 ```
 
-## TODO:
+## API document
+### `createRequestDecorator`
+Create a decorator, when decorating a filed with it, the field will be an ajax store.
 
-- [ ] API document
-- [x] Unit test
+pass an function as the only parameter. Which receive HTTP request config, and return a promise object representing the Ajax.
+
+``` ts
+export interface AdapterParameter<TExtra = any> {
+    url: string;
+    method?: HTTPMethod;
+    body?: object;
+    query?: object;
+    extraData?: TExtra;
+}
+export declare type AjaxAdapter<TExtra = any> = (args: AdapterParameter<TExtra>) => Promise<any>;
+
+export declare function createRequestDecorator<TExtra = any>(adapter: AjaxAdapter<TExtra>): ({ url, method, extraData }: {
+    url: string;
+    method: HTTPMethod;
+    extraData?: any;
+}) => <T extends object>(target: T, name: string) => any
+```
+
+### AjaxStore
+AjaxStore is just an interface. in some reason, the type of an decorator's return value must be `any`.
+
+This interface can implicit the type of decorated field when you use TypeScript or JSDoc.
+
+``` ts
+export interface AjaxStore<TParam = any, TData = any> {
+    initial: boolean;
+    loading: boolean;
+    data: null | TData;
+    error: Error | null;
+    reset: () => void;
+    fetch: (params?: TParam) => Promise<TData>;
+}
+```
+
+## Unit test
+Ensure your node environment support ES2018's`Promise.prototype.catch`
+
+``` sh
+yarn test
+```

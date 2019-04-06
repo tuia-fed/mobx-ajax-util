@@ -1,7 +1,7 @@
 import { observable, action, runInAction } from 'mobx';
 
 export type HTTPMethod = 'POST' | 'GET' | 'PATCH' | 'PUT' | 'DELETE' | 'HEAD';
-export interface ProviderParameter<TExtra = any> {
+export interface AdapterParameter<TExtra = any> {
   url: string;
   method?: HTTPMethod;
   body?: object;
@@ -9,8 +9,8 @@ export interface ProviderParameter<TExtra = any> {
   extraData?: TExtra;
 }
 
-export type AjaxProvider<TExtra = any> = (
-  args: ProviderParameter<TExtra>
+export type AjaxAdapter<TExtra = any> = (
+  args: AdapterParameter<TExtra>
 ) => Promise<any>;
 
 export interface AjaxStore<TParam = any, TData = any> {
@@ -23,7 +23,7 @@ export interface AjaxStore<TParam = any, TData = any> {
 }
 
 export function createRequestDecorator<TExtra = any>(
-  provider: AjaxProvider<TExtra>
+  adapter: AjaxAdapter<TExtra>
 ) {
   return function asRequest({
     url,
@@ -43,7 +43,7 @@ export function createRequestDecorator<TExtra = any>(
 
         @action.bound fetch(params: object) {
           this.loading = true;
-          return provider({
+          return adapter({
             url,
             method,
             body: params,
