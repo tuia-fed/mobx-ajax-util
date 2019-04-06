@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import * as sinon from 'sinon';
 import { observable, autorun, IReactionDisposer, toJS } from 'mobx';
 
-import { createRequestDecorator, AjaxStore } from '../src';
+import { createRequestDecorator, AjaxStore } from '../dist/src/index';
 declare const global: any;
 interface ITestStore {
   enterLoadingSpy: sinon.SinonSpy<any[], any>;

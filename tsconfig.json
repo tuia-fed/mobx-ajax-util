@@ -7,8 +7,7 @@
     "outDir": "dist",
     "lib": ["dom", "es2015", "es2016", "es2017", "es2018", "esnext"],
     "declaration": true,
-    "declarationDir": "./",
     "sourceMap": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "demo", "dist", "test"]
 }

@@ -10,14 +10,14 @@
     "type": "git",
     "url": "https://github.com/tuia-fed/mobx-ajax-util"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "start": "parcel demo/index.html",
     "prepublish": "npm run build",
+    "pretest": "tsc",
     "test": "mocha",
-    "coverage": "nyc mocha && nyc report --reporter=json"
+    "coverage": "nyc npm test && nyc report --reporter=json"
   },
   "devDependencies": {
     "query-string": "^6.3.0",
