@@ -2,11 +2,12 @@ language: node_js
 node_js:
   - '10.15.3'
 
+cache: yarn
 install:
   - yarn install
 
 script:
-  - yarn test
+  - yarn coverage
   - codecov -f coverage/*.json
 
 branches:
