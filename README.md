@@ -1,5 +1,6 @@
 # Mobx Ajax Util
-
+[![codecov](https://codecov.io/gh/tuia-fed/mobx-ajax-util/branch/master/graph/badge.svg)](https://codecov.io/gh/tuia-fed/mobx-ajax-util)
+[![Build Status](https://travis-ci.com/tuia-fed/mobx-ajax-util.svg?branch=master)](https://travis-ci.com/tuia-fed/mobx-ajax-util)
 > easy to handle Ajax request with loading and initial status.
 
 While we establish an Ajax request, sometimes we also need an observable `loading` state for loading logic.

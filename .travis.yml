@@ -10,7 +10,7 @@ script:
   - yarn coverage
 
 after_success:
-  - codecov
+  - codecov -f coverage/*.json
 
 env:
   - CODECOV_TOKEN="939a5e53-2028-4db1-a208-8c75291ee56d"
