@@ -17,7 +17,8 @@
     "build": "rollup -c rollup.config.js",
     "start": "parcel demo/index.html",
     "prepublish": "npm run build",
-    "test": "nyc mocha"
+    "test": "mocha",
+    "coverage": "nyc mocha --reporter=json > coverage/coverage.json"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
@@ -38,6 +39,7 @@
     "babel-preset-react": "^6.24.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "codecov": "^3.3.0",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "mocha": "^6.0.2",

@@ -2,10 +2,15 @@ language: node_js
 node_js:
   - '10.15.3'
 
-script:
+install:
   - yarn install
+
+script:
   - yarn test
 
 branches:
   only:
     - master
+
+env:
+  - CODECOV_TOKEN="939a5e53-2028-4db1-a208-8c75291ee56d"
