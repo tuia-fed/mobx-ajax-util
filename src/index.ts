@@ -1,4 +1,5 @@
 import { observable, action, runInAction } from 'mobx';
+import * as nanoId from 'nano-id';
 
 export type HTTPMethod = 'POST' | 'GET' | 'PATCH' | 'PUT' | 'DELETE' | 'HEAD';
 export interface AdapterParameter<TExtra = any> {
@@ -34,7 +35,7 @@ export function createRequestDecorator<TExtra = any>(
     method: HTTPMethod;
     extraData?: any;
   }) {
-    return function wrap<T extends object>(target: T, name: string): any {
+    return function wrap(target: any, name: string): any {
       class AjaxStoreImpl implements AjaxStore {
         @observable initial = true;
         @observable loading = false;
@@ -79,9 +80,17 @@ export function createRequestDecorator<TExtra = any>(
           });
         }
       }
-      const instance = new AjaxStoreImpl();
-      target[name] = instance;
-      return instance;
+
+      const storeFieldSymbol = Symbol(name);
+
+      Object.defineProperty(target, name, {
+        get: function() {
+          if (!this[storeFieldSymbol]) {
+            this[storeFieldSymbol] = new AjaxStoreImpl();
+          }
+          return this[storeFieldSymbol];
+        }
+      });
     };
   };
 }
